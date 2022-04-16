@@ -1,8 +1,8 @@
-from TrainNote import TrainNote
+from TrainTableNote import TrainTableNote
 from datetime import date, datetime, time, timedelta
 
 
-class TrainTable:
+class TrainTableModel:
     def __init__(self):
         self.trains: list = []
 
@@ -12,15 +12,15 @@ class TrainTable:
                            start_datetime: datetime,
                            end_datetime: datetime,
                            ):
-        self.trains.append(TrainNote(start_station,
-                                     end_station,
-                                     start_datetime,
-                                     end_datetime))
+        self.trains.append(TrainTableNote(start_station,
+                                          end_station,
+                                          start_datetime,
+                                          end_datetime))
 
     def find_with_train_number(self,
                                search_number):
         if search_number > len(self.trains):
-            return None
+            return []
         return [search_number - 1]
 
     def find_with_start_date(self,

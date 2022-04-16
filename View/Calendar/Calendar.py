@@ -21,8 +21,10 @@ MONTH_AMOUNT = 12
 
 
 class CalendarDaysLayout(GridLayout):
-    def __init__(self, days):
+    def __init__(self, days, month_number, root_calendar):
         super(CalendarDaysLayout, self).__init__()
+        self.month_number = month_number
+        self.root_calendar = root_calendar
         self.cols = 7
         self.rows = 5
         self.padding = 10
@@ -33,9 +35,16 @@ class CalendarDaysLayout(GridLayout):
                                    color=[1, 1, 0, 1],
                                    background_color=[1, .1, .4, 1]))
 
+    def button_press(self, instance):
+        sent_date = "{0}-{1}-{2}".format(str(YEAR),
+                                         push_zero_to_date(str(self.month_number)),
+                                         push_zero_to_date(instance.text))
+        self.root_calendar.set_current_working_date(sent_date)
+        self.root_calendar.apply_current_working_screen()
+
 
 class CalendarScreen(Screen):
-    def __init__(self, month_number):
+    def __init__(self, month_number, root_calendar):
         super(CalendarScreen, self).__init__()
         self.name = months[month_number]
         main_screen_layout = BoxLayout(orientation='vertical',
@@ -61,7 +70,7 @@ class CalendarScreen(Screen):
                                             pos_hint={'center_y': .5},
                                             background_color=[1, .1, .9, 1]))
         main_screen_layout.add_widget(kid_screen_layout)
-        main_screen_layout.add_widget((CalendarDaysLayout(calendar.monthrange(YEAR, month_number + 1)[1])))
+        main_screen_layout.add_widget((CalendarDaysLayout(calendar.monthrange(YEAR, month_number + 1)[1], month_number, root_calendar)))
         self.add_widget(main_screen_layout)
 
     def month_change_on_press(self, instance):
@@ -72,11 +81,30 @@ class CalendarScreen(Screen):
 
 
 class Calendar(ScreenManager):
-    def __init__(self):
+    def __init__(self, manager):
         super(Calendar, self).__init__()
+        self.current_working_date = None
+        self.next_working_screen = None
+        self.manager = manager
         Window.clearcolor = (.1, .1, .1, 1)
         for month in range(MONTH_AMOUNT):
-            self.add_widget(CalendarScreen(month))
+            self.add_widget(CalendarScreen(month, self))
+
+    def set_current_working_date(self, press_date):
+        self.current_working_date = press_date
+
+    def set_next_working_screen(self, working_screen):
+        self.next_working_screen = working_screen
+
+    def apply_current_working_screen(self):
+        self.manager.current = self.next_working_screen
+
+
+def push_zero_to_date(number: str):
+    if len(number) == 1:
+        return "0" + number
+    else:
+        return number
 
 
 class LocalApp(App):

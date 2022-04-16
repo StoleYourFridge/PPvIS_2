@@ -1,7 +1,7 @@
 from datetime import datetime
 
 
-class TrainNote:
+class TrainTableNote:
     def __init__(self,
                  start_station,
                  end_station,
