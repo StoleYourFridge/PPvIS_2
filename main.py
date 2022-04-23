@@ -1,6 +1,4 @@
-from datetime import date, time, datetime
-from kivy.clock import Clock
+from View.MainScreens.MainViewManager import MainScreensApp
 
-d1 = datetime.fromisoformat('2021-12-01 01:30:25')
-print(d1)
-
+please = MainScreensApp()
+please.run()

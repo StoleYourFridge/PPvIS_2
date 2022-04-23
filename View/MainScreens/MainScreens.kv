@@ -1,0 +1,228 @@
+<DisabledButton@Button>:
+    disabled: True
+    color: (.1, .2, .3, 1)
+    background_color: (.1, .2, .3, 1)
+
+<StartScreenButton@Button>:
+    size_hint: .7, 1
+    pos_hint: {"center_x": 0.5}
+
+<EnterTwoColsGrid@GridLayout>:
+    cols: 2
+    first_text: ""
+    second_text: ""
+    DisabledButton:
+        text: root.first_text
+    TextInput:
+        id: start
+        text: ""
+    DisabledButton:
+        text: root.second_text
+    TextInput:
+        id: end
+        text: ""
+
+<SearchDeleteTemplateScreenLayout>:
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        DisabledButton:
+            text: "Station"
+        CheckBox:
+            id: second_first_check
+            group: "second group"
+            value: True
+            on_active: root.parent_screen.on_second_group_active(self.active, "Station")
+            color: (0, 0, 0, 1)
+    BoxLayout:
+        orientation: 'horizontal'
+        DisabledButton:
+            text: "Time"
+        CheckBox:
+            id: second_second_check
+            group: "second group"
+            on_active: root.parent_screen.on_second_group_active(self.active, "Time range")
+            color: (0, 0, 0, 1)
+    BoxLayout:
+        orientation: 'horizontal'
+        DisabledButton:
+            text: "Date"
+        CheckBox:
+            id: second_third_check
+            group: "second group"
+            on_active: root.parent_screen.on_second_group_active(self.active, "Date")
+            color: (0, 0, 0, 1)
+
+
+<StartScreen>:
+    name: 'StartScreen'
+    BoxLayout:
+        orientation: 'vertical'
+        StartScreenButton:
+            on_press: root.on_all_notes_output_button_press()
+            text: "Output All Notes"
+        StartScreenButton:
+            on_press: root.on_new_note_addition_button_press()
+            text: "Add New Note"
+        StartScreenButton:
+            on_press: root.on_search_button_press()
+            text: "Search Specific Notes"
+        StartScreenButton:
+            on_press: root.on_delete_button_press()
+            text: "Delete Specific Notes"
+
+
+<NewNoteAdditionScreen>:
+    name: 'NewNoteAdditionScreen'
+    BoxLayout:
+        orientation: 'vertical'
+        EnterTwoColsGrid:
+            id: station_grid
+            first_text: "Enter start station"
+            second_text: "Enter end station"
+        GridLayout:
+            cols: 3
+            DisabledButton:
+                text: "Enter start date"
+            TextInput:
+                id: start_date
+                text: ""
+            Button:
+                text: "Apply calendar info"
+                on_press: root.on_apply_start_calendar_info_button_press()
+        GridLayout:
+            cols: 3
+            DisabledButton:
+                text: "Enter end date"
+            TextInput:
+                id: end_date
+                text: ""
+            Button:
+                text: "Apply calendar info"
+                on_press: root.on_apply_end_calendar_info_button_press()
+        Button:
+            text: "Open calendar"
+            on_press: root.on_calendar_open_button_press()
+        EnterTwoColsGrid:
+            id: time_grid
+            first_text: "Enter start time"
+            second_text: "Enter end time"
+        BoxLayout:
+            orientation: 'horizontal'
+            Button:
+                text: "Home"
+                on_press: root.on_back_button_press()
+            DisabledButton:
+                id: dialog
+                text: "Dialog window"
+            Button:
+                text: "Apply entered information"
+                on_press: root.on_apply_entered_info_button_press()
+
+
+<SearchDeleteTemplateScreen>:
+    BoxLayout:
+        id: main
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint: (1, 0.15)
+            orientation: 'horizontal'
+            DisabledButton:
+                text: "Number"
+                size_hint: (3, 1)
+            CheckBox:
+                id: second_forth_check
+                color: (0, 0, 0, 1)
+                group: "second group"
+                on_active: root.on_second_group_active(self.active, "Number")
+            TextInput:
+                id: train_number_input
+                text: ""
+                size_hint: (2, 1)
+        BoxLayout:
+            size_hint: (1, 0.5)
+            orientation: 'horizontal'
+            DisabledButton:
+                text: "Path time"
+                size_hint: (3, 1)
+            CheckBox:
+                id: second_fifth_check
+                color: (0, 0, 0, 1)
+                group: "second group"
+                on_active: root.on_second_group_active(self.active, "Path time")
+            BoxLayout:
+                size_hint: (2, 1)
+                orientation: 'vertical'
+                TextInput:
+                    id: days_input
+                    text: ""
+                    size_hint: (2, 1)
+                TextInput:
+                    id: hours_input
+                    text: ""
+                    size_hint: (2, 1)
+                TextInput:
+                    id: minutes_input
+                    text: ""
+                    size_hint: (2, 1)
+                TextInput:
+                    id: seconds_input
+                    text: ""
+                    size_hint: (2, 1)
+        BoxLayout:
+            orientation: 'horizontal'
+            GridLayout:
+                cols: 2
+                rows: 2
+                DisabledButton:
+                    text: "Start"
+                CheckBox:
+                    id: first_first_check
+                    group: "first group"
+                    color: (0, 0, 0, 1)
+                    on_active: root.on_first_group_active(self.active, "Start")
+                DisabledButton:
+                    text: "End"
+                CheckBox:
+                    id: first_second_check
+                    group: "first group"
+                    color: (0, 0, 0, 1)
+                    on_active: root.on_first_group_active(self.active, "End")
+            SearchDeleteTemplateScreenLayout:
+                parent_screen: root
+            BoxLayout:
+                orientation: 'vertical'
+                TextInput:
+                    id: station_input
+                    text: ""
+                BoxLayout:
+                    orientation: 'vertical'
+                    TextInput:
+                        id: low_time_input
+                        text: ""
+                    TextInput:
+                        id: top_time_input
+                        text: ""
+                BoxLayout:
+                    orientation: 'vertical'
+                    TextInput:
+                        id: date_input
+                        text: ""
+                    Button:
+                        text: "Open calendar"
+                        on_press: root.on_calendar_open_button_press()
+                    Button:
+                        text: "Apply calendar info"
+                        on_press: root.on_apply_calendar_info_button_press()
+        BoxLayout:
+            size_hint: (1, 0.2)
+            orientation: 'horizontal'
+            Button:
+                text: "Home"
+                on_press: root.on_back_button_press()
+            DisabledButton:
+                id: dialog
+                text: "Dialog window"
+            Button:
+                text: root.action_name
+                on_press: root.on_action_button_press()

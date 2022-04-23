@@ -1,29 +1,38 @@
-from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
-from kivy.config import Config
 from kivy.core.window import Window
 import calendar
-import json
-
-Config.set('graphics', 'resizable', '0')
-Config.set('graphics', 'width', '400')
-Config.set('graphics', 'height', '200')
 
 
-with open("../RowJsonInfo/CalendarMonths.json", "r") as file:
-    months = json.load(file)
+MONTHS = [
+     "January",
+     "February",
+     "March",
+     "April",
+     "May",
+     "June",
+     "July",
+     "August",
+     "September",
+     "October",
+     "November",
+     "December"
+]
 YEAR = 2022
 MONTH_AMOUNT = 12
+DEFAULT_CALENDAR_VALUE = "1970-12-01"
 
 
 class CalendarDaysLayout(GridLayout):
-    def __init__(self, days, month_number, root_calendar):
+    def __init__(self,
+                 days,
+                 month_number,
+                 root_calendar):
         super(CalendarDaysLayout, self).__init__()
-        self.month_number = month_number
+        self.month_number = month_number + 1
         self.root_calendar = root_calendar
         self.cols = 7
         self.rows = 5
@@ -33,9 +42,11 @@ class CalendarDaysLayout(GridLayout):
             self.add_widget(Button(text=str(day + 1),
                                    font_size=25,
                                    color=[1, 1, 0, 1],
-                                   background_color=[1, .1, .4, 1]))
+                                   background_color=[1, .1, .4, 1],
+                                   on_press=self.button_press))
 
-    def button_press(self, instance):
+    def button_press(self,
+                     instance):
         sent_date = "{0}-{1}-{2}".format(str(YEAR),
                                          push_zero_to_date(str(self.month_number)),
                                          push_zero_to_date(instance.text))
@@ -44,9 +55,11 @@ class CalendarDaysLayout(GridLayout):
 
 
 class CalendarScreen(Screen):
-    def __init__(self, month_number, root_calendar):
+    def __init__(self,
+                 month_number,
+                 root_calendar):
         super(CalendarScreen, self).__init__()
-        self.name = months[month_number]
+        self.name = MONTHS[month_number]
         main_screen_layout = BoxLayout(orientation='vertical',
                                        spacing=20)
         kid_screen_layout = BoxLayout(orientation='horizontal',
@@ -70,7 +83,10 @@ class CalendarScreen(Screen):
                                             pos_hint={'center_y': .5},
                                             background_color=[1, .1, .9, 1]))
         main_screen_layout.add_widget(kid_screen_layout)
-        main_screen_layout.add_widget((CalendarDaysLayout(calendar.monthrange(YEAR, month_number + 1)[1], month_number, root_calendar)))
+        main_screen_layout.add_widget((CalendarDaysLayout(calendar.monthrange(YEAR,
+                                                                              month_number + 1)[1],
+                                                                              month_number,
+                                                                              root_calendar)))
         self.add_widget(main_screen_layout)
 
     def month_change_on_press(self, instance):
@@ -83,7 +99,7 @@ class CalendarScreen(Screen):
 class Calendar(ScreenManager):
     def __init__(self, manager):
         super(Calendar, self).__init__()
-        self.current_working_date = None
+        self.current_working_date = DEFAULT_CALENDAR_VALUE
         self.next_working_screen = None
         self.manager = manager
         Window.clearcolor = (.1, .1, .1, 1)
@@ -105,13 +121,3 @@ def push_zero_to_date(number: str):
         return "0" + number
     else:
         return number
-
-
-class LocalApp(App):
-    def build(self):
-        return Calendar()
-
-
-if __name__ == "__main__":
-    example = LocalApp()
-    example.run()
