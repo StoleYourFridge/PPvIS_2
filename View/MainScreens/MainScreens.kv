@@ -70,6 +70,9 @@
         StartScreenButton:
             on_press: root.on_delete_button_press()
             text: "Delete Specific Notes"
+        StartScreenButton:
+            on_press: root.on_file_work_button_press()
+            text: "File Work"
 
 
 <NewNoteAdditionScreen>:
@@ -150,21 +153,29 @@
                 color: (0, 0, 0, 1)
                 group: "second group"
                 on_active: root.on_second_group_active(self.active, "Path time")
-            BoxLayout:
+            GridLayout:
                 size_hint: (2, 1)
-                orientation: 'vertical'
+                cols: 2
+                DisabledButton:
+                    text: "Days"
                 TextInput:
                     id: days_input
                     text: ""
                     size_hint: (2, 1)
+                DisabledButton:
+                    text: "Hours"
                 TextInput:
                     id: hours_input
                     text: ""
                     size_hint: (2, 1)
+                DisabledButton:
+                    text: "Minutes"
                 TextInput:
                     id: minutes_input
                     text: ""
                     size_hint: (2, 1)
+                DisabledButton:
+                    text: "Seconds"
                 TextInput:
                     id: seconds_input
                     text: ""
@@ -189,17 +200,22 @@
                     color: (0, 0, 0, 1)
                     on_active: root.on_first_group_active(self.active, "End")
             SearchDeleteTemplateScreenLayout:
+                id: template
                 parent_screen: root
             BoxLayout:
                 orientation: 'vertical'
                 TextInput:
                     id: station_input
                     text: ""
-                BoxLayout:
-                    orientation: 'vertical'
+                GridLayout:
+                    cols: 2
+                    DisabledButton:
+                        text: "Low Time Level"
                     TextInput:
                         id: low_time_input
                         text: ""
+                    DisabledButton:
+                        text: "Top Time Level"
                     TextInput:
                         id: top_time_input
                         text: ""
@@ -226,3 +242,59 @@
             Button:
                 text: root.action_name
                 on_press: root.on_action_button_press()
+
+<FileManagementScreen>:
+    name: "FileManagerScreen"
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            GridLayout:
+                cols: 2
+                DisabledButton:
+                    text: "Add New File"
+                CheckBox:
+                    id: first_first_check
+                    group: "first_group"
+                    color: (0, 0, 0, 1)
+                    on_active: root.on_first_group_active(self.active, "add_check")
+                DisabledButton:
+                    text: "Delete File"
+                CheckBox:
+                    id: first_second_check
+                    group: "first_group"
+                    color: (0, 0, 0, 1)
+                    on_active: root.on_first_group_active(self.active, "delete_check")
+                DisabledButton:
+                    text: "Read From File"
+                CheckBox:
+                    id: first_third_check
+                    group: "first_group"
+                    color: (0, 0, 0, 1)
+                    on_active: root.on_first_group_active(self.active, "read_check")
+                DisabledButton:
+                    text: "Load To File"
+                CheckBox:
+                    id: first_forth_check
+                    group: "first_group"
+                    color: (0, 0, 0, 1)
+                    on_active: root.on_first_group_active(self.active, "load_check")
+            BoxLayout:
+                orientation: 'vertical'
+                DisabledButton:
+                    text: "Enter File Name To Deal With"
+                TextInput:
+                    id: input
+                    font_size: 45
+                    text: ""
+                Button:
+                    text: "Action"
+                    on_press: root.on_action_button_press()
+        DisabledButton:
+            id: dialog
+            text: "Dialog window"
+            size_hint: (1, 0.2)
+        Button:
+            text: "Home"
+            on_press: root.on_back_button_press()
+            size_hint: (1, 0.2)

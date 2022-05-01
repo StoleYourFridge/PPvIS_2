@@ -1,7 +1,7 @@
 from kivy.uix.screenmanager import ScreenManager
 from Controller.TrainTableController import TrainTableController
 from View.MainScreens.MainScreens import StartScreen, NewNoteAdditionScreen, SearchScreen, DeleteScreen
-from View.MainScreens.MainScreens import AllNotesOutputScreen, CalendarScreen
+from View.MainScreens.MainScreens import AllNotesOutputScreen, CalendarScreen, FileManagementScreen
 from View.Calendar.Calendar import Calendar
 from kivymd.app import MDApp
 
@@ -15,6 +15,7 @@ class MainViewManager(ScreenManager):
         self.add_widget(NewNoteAdditionScreen())
         self.add_widget(DeleteScreen())
         self.add_widget(AllNotesOutputScreen())
+        self.add_widget(FileManagementScreen())
         search_screen = SearchScreen()
         search_screen.addition()
         calendar_screen = CalendarScreen()

@@ -3,7 +3,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
-from kivy.core.window import Window
+from datetime import date
 import calendar
 
 
@@ -23,7 +23,6 @@ MONTHS = [
 ]
 YEAR = 2022
 MONTH_AMOUNT = 12
-DEFAULT_CALENDAR_VALUE = "1970-12-01"
 
 
 class CalendarDaysLayout(GridLayout):
@@ -97,19 +96,22 @@ class CalendarScreen(Screen):
 
 
 class Calendar(ScreenManager):
-    def __init__(self, manager):
+    def __init__(self,
+                 manager):
         super(Calendar, self).__init__()
-        self.current_working_date = DEFAULT_CALENDAR_VALUE
+        self.current_working_date = date.__str__(date.today())
         self.next_working_screen = None
         self.manager = manager
-        Window.clearcolor = (.1, .1, .1, 1)
         for month in range(MONTH_AMOUNT):
-            self.add_widget(CalendarScreen(month, self))
+            self.add_widget(CalendarScreen(month,
+                                           self))
 
-    def set_current_working_date(self, press_date):
+    def set_current_working_date(self,
+                                 press_date):
         self.current_working_date = press_date
 
-    def set_next_working_screen(self, working_screen):
+    def set_next_working_screen(self,
+                                working_screen):
         self.next_working_screen = working_screen
 
     def apply_current_working_screen(self):

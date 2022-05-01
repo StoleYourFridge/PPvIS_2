@@ -1,0 +1,303 @@
+<?xml version="1.0" ?>
+  <trains>
+    <train>
+      <start_station>Shcuchinshina</start_station>
+      <end_station>Grodno</end_station>
+      <start_datetime>2021-01-10 11:10:10</start_datetime>
+      <end_datetime>2021-01-15 20:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Moscow</start_station>
+      <end_station>Riga</end_station>
+      <start_datetime>2022-05-10 14:34:00</start_datetime>
+      <end_datetime>2022-06-01 20:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Minsk</start_station>
+      <end_station>Riga</end_station>
+      <start_datetime>2022-09-15 11:00:00</start_datetime>
+      <end_datetime>2022-09-20 10:10:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Lida</start_station>
+      <end_station>Brest</end_station>
+      <start_datetime>2020-11-12 22:30:00</start_datetime>
+      <end_datetime>2020-11-14 20:15:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Vitebsk</start_station>
+      <end_station>Lida</end_station>
+      <start_datetime>2022-02-15 11:35:00</start_datetime>
+      <end_datetime>2022-02-19 20:10:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Shcuchinshina</start_station>
+      <end_station>Gomel</end_station>
+      <start_datetime>2021-01-10 20:10:10</start_datetime>
+      <end_datetime>2021-01-13 22:10:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Vitebsk</start_station>
+      <end_station>Trakai</end_station>
+      <start_datetime>2022-01-10 14:34:00</start_datetime>
+      <end_datetime>2022-01-15 20:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Alytus</start_station>
+      <end_station>Minsk</end_station>
+      <start_datetime>2022-04-12 10:00:00</start_datetime>
+      <end_datetime>2022-04-23 20:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Lida</start_station>
+      <end_station>Utena</end_station>
+      <start_datetime>2020-09-15 10:15:00</start_datetime>
+      <end_datetime>2020-09-20 20:15:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Bialystok</start_station>
+      <end_station>Minsk</end_station>
+      <start_datetime>2022-02-15 11:35:00</start_datetime>
+      <end_datetime>2022-02-20 20:10:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Shcuchinchina</start_station>
+      <end_station>Pskov</end_station>
+      <start_datetime>2021-01-10 11:10:10</start_datetime>
+      <end_datetime>2021-01-20 20:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Vitebsk</start_station>
+      <end_station>Tallinn</end_station>
+      <start_datetime>2022-05-26 14:34:00</start_datetime>
+      <end_datetime>2022-06-04 20:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Lida</start_station>
+      <end_station>Minsk</end_station>
+      <start_datetime>2022-11-12 19:00:00</start_datetime>
+      <end_datetime>2022-11-13 00:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Shcuchinchina</start_station>
+      <end_station>Grodno</end_station>
+      <start_datetime>2021-01-10 11:10:10</start_datetime>
+      <end_datetime>2021-02-10 20:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Riga</start_station>
+      <end_station>Vilnius</end_station>
+      <start_datetime>2022-01-10 14:34:00</start_datetime>
+      <end_datetime>2022-01-20 20:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Minsk</start_station>
+      <end_station>Vilnius</end_station>
+      <start_datetime>2018-12-10 11:11:11</start_datetime>
+      <end_datetime>2019-01-01 00:00:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Warszawa</start_station>
+      <end_station>Minsk</end_station>
+      <start_datetime>2021-02-10 11:10:10</start_datetime>
+      <end_datetime>2021-02-27 20:00:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Minsk</start_station>
+      <end_station>Moscow</end_station>
+      <start_datetime>2021-02-27 21:30:00</start_datetime>
+      <end_datetime>2021-03-18 13:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Warszawa</start_station>
+      <end_station>Riga</end_station>
+      <start_datetime>2022-02-15 11:00:00</start_datetime>
+      <end_datetime>2022-02-20 10:10:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Oslo</start_station>
+      <end_station>Minsk</end_station>
+      <start_datetime>2020-11-10 22:30:00</start_datetime>
+      <end_datetime>2020-11-29 21:18:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Vitebsk</start_station>
+      <end_station>Lida</end_station>
+      <start_datetime>2022-02-15 11:35:00</start_datetime>
+      <end_datetime>2022-02-19 20:10:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Vitebsk</start_station>
+      <end_station>Murmansk</end_station>
+      <start_datetime>2021-07-10 20:10:10</start_datetime>
+      <end_datetime>2021-07-18 23:10:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Murmansk</start_station>
+      <end_station>Trakai</end_station>
+      <start_datetime>2021-01-10 14:34:00</start_datetime>
+      <end_datetime>2021-01-15 20:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Murmansk</start_station>
+      <end_station>Minsk</end_station>
+      <start_datetime>2022-08-04 10:00:00</start_datetime>
+      <end_datetime>2022-09-01 04:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Lida</start_station>
+      <end_station>Brest</end_station>
+      <start_datetime>2016-09-19 18:15:00</start_datetime>
+      <end_datetime>2016-09-27 21:30:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Bialystok</start_station>
+      <end_station>Gomel</end_station>
+      <start_datetime>2017-04-05 10:35:00</start_datetime>
+      <end_datetime>2017-04-23 22:10:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Minsk</start_station>
+      <end_station>Pskov</end_station>
+      <start_datetime>2023-08-10 11:10:10</start_datetime>
+      <end_datetime>2023-08-21 20:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>World</start_station>
+      <end_station>Hell</end_station>
+      <start_datetime>2012-12-11 23:59:59</start_datetime>
+      <end_datetime>2012-12-12 00:00:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Stockholm</start_station>
+      <end_station>Minsk</end_station>
+      <start_datetime>2014-11-12 19:00:00</start_datetime>
+      <end_datetime>2014-12-12 00:30:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Stockholm</start_station>
+      <end_station>Vilnius</end_station>
+      <start_datetime>2022-01-10 14:10:10</start_datetime>
+      <end_datetime>2022-01-28 16:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Riga</start_station>
+      <end_station>Stockholm</end_station>
+      <start_datetime>2022-06-10 10:34:00</start_datetime>
+      <end_datetime>2022-07-06 23:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Stockholm</start_station>
+      <end_station>Lahti</end_station>
+      <start_datetime>2021-09-16 10:30:11</start_datetime>
+      <end_datetime>2021-10-06 12:00:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Minsk</start_station>
+      <end_station>Riga</end_station>
+      <start_datetime>2020-07-18 21:30:00</start_datetime>
+      <end_datetime>2020-07-29 13:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Warszawa</start_station>
+      <end_station>Oslo</end_station>
+      <start_datetime>2020-11-01 11:00:00</start_datetime>
+      <end_datetime>2020-11-09 23:10:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Oslo</start_station>
+      <end_station>Minsk</end_station>
+      <start_datetime>2020-11-10 04:30:00</start_datetime>
+      <end_datetime>2020-11-23 20:18:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Minsk</start_station>
+      <end_station>Heinola</end_station>
+      <start_datetime>2019-12-15 11:35:00</start_datetime>
+      <end_datetime>2020-01-04 16:10:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Heinola</start_station>
+      <end_station>Kouvola</end_station>
+      <start_datetime>2020-01-04 18:10:00</start_datetime>
+      <end_datetime>2020-01-05 06:10:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Heinola</start_station>
+      <end_station>Lahti</end_station>
+      <start_datetime>2020-01-06 14:34:00</start_datetime>
+      <end_datetime>2020-01-10 20:12:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Murmansk</start_station>
+      <end_station>Riga</end_station>
+      <start_datetime>2018-08-04 16:00:00</start_datetime>
+      <end_datetime>2018-08-18 05:16:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Riga</start_station>
+      <end_station>Vilnius</end_station>
+      <start_datetime>2018-08-18 16:15:00</start_datetime>
+      <end_datetime>2018-09-01 20:30:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Vilnius</start_station>
+      <end_station>Bialystok</end_station>
+      <start_datetime>2018-09-01 10:35:00</start_datetime>
+      <end_datetime>2018-09-28 17:10:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Vilnius</start_station>
+      <end_station>Minsk</end_station>
+      <start_datetime>2018-09-01 11:10:10</start_datetime>
+      <end_datetime>2018-09-16 23:10:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Bialystok</start_station>
+      <end_station>Chernigow</end_station>
+      <start_datetime>2018-09-17 22:00:00</start_datetime>
+      <end_datetime>2018-09-28 16:25:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Stockholm</start_station>
+      <end_station>Vilnius</end_station>
+      <start_datetime>2017-10-12 20:20:00</start_datetime>
+      <end_datetime>2017-10-20 18:50:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Sochi</start_station>
+      <end_station>Murmansk</end_station>
+      <start_datetime>2021-01-10 15:10:10</start_datetime>
+      <end_datetime>2021-01-18 20:10:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Sochi</start_station>
+      <end_station>Moscow</end_station>
+      <start_datetime>2022-09-10 10:00:00</start_datetime>
+      <end_datetime>2022-09-21 14:00:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Moscow</start_station>
+      <end_station>Minsk</end_station>
+      <start_datetime>2022-09-14 12:30:00</start_datetime>
+      <end_datetime>2022-09-20 00:00:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Minsk</start_station>
+      <end_station>Sochi</end_station>
+      <start_datetime>2016-03-15 10:00:00</start_datetime>
+      <end_datetime>2016-03-29 14:00:00</end_datetime>
+    </train>
+    <train>
+      <start_station>Minsk</start_station>
+      <end_station>Gorodeya</end_station>
+      <start_datetime>2022-05-01 07:10:00</start_datetime>
+      <end_datetime>2022-05-01 09:16:00</end_datetime>
+    <train>
+    </train>
+      <start_station>Minsk</start_station>
+      <end_station>Lida</end_station>
+      <start_datetime>2022-05-01 07:10:00</start_datetime>
+      <end_datetime>2022-05-01 10:03:00</end_datetime>
+    </train>
+  </trains>

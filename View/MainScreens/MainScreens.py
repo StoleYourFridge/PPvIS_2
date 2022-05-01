@@ -19,6 +19,9 @@ class StartScreen(Screen):
     def on_delete_button_press(self):
         self.manager.current = "DeleteScreen"
 
+    def on_file_work_button_press(self):
+        self.manager.current = "FileManagerScreen"
+
 
 class NewNoteAdditionScreen(Screen):
     def on_calendar_open_button_press(self):
@@ -30,18 +33,6 @@ class NewNoteAdditionScreen(Screen):
 
     def on_apply_end_calendar_info_button_press(self):
         self.ids.end_date.text = self.manager.calendar.current_working_date
-
-    def on_back_button_press(self):
-        self.manager.current = "StartScreen"
-
-    def clear_widget_info(self):
-        self.ids.dialog.text = "Dialog window"
-        self.ids.station_grid.ids.start.text = ""
-        self.ids.station_grid.ids.end.text = ""
-        self.ids.start_date.text = ""
-        self.ids.time_grid.ids.start.text = ""
-        self.ids.end_date.text = ""
-        self.ids.time_grid.ids.end.text = ""
 
     def on_apply_entered_info_button_press(self):
         if not self.manager.controller.add_new_note_validated(self.ids.station_grid.ids.start.text,
@@ -56,6 +47,18 @@ class NewNoteAdditionScreen(Screen):
             self.clear_widget_info()
         return
 
+    def on_back_button_press(self):
+        self.manager.current = "StartScreen"
+
+    def clear_widget_info(self):
+        self.ids.dialog.text = "Dialog window"
+        self.ids.station_grid.ids.start.text = ""
+        self.ids.station_grid.ids.end.text = ""
+        self.ids.start_date.text = ""
+        self.ids.time_grid.ids.start.text = ""
+        self.ids.end_date.text = ""
+        self.ids.time_grid.ids.end.text = ""
+
 
 class SearchDeleteTemplateScreenLayout(BoxLayout):
     parent_screen = ObjectProperty()
@@ -66,46 +69,32 @@ class SearchDeleteTemplateScreen(Screen):
     first_group_data = ""
     second_group_data = ""
 
-    def on_calendar_open_button_press(self):
-        self.manager.calendar.set_next_working_screen(self.name)
-        self.manager.current = "CalendarScreen"
-
-    def on_apply_calendar_info_button_press(self):
-        self.ids.date_input.text = self.manager.calendar.current_working_date
-
-    def on_back_button_press(self):
-        self.clear_widget_info()
-        self.manager.current = "StartScreen"
-
-    def on_first_group_active(self, value, text):
+    def on_first_group_active(self,
+                              value,
+                              text):
         if value:
             self.first_group_data = text
 
-    def on_second_group_active(self, value, text):
+    def on_second_group_active(self,
+                               value,
+                               text):
         if value:
             self.second_group_data = text
 
     def first_group_active_validation(self):
-        if self.first_group_data == "":
+        if not self.ids.first_first_check.active\
+                and not self.ids.first_second_check.active:
             return False
         return True
 
     def second_group_active_validation(self):
-        if self.second_group_data == "":
+        if not self.ids.template.ids.second_first_check.active\
+                and not self.ids.template.ids.second_second_check.active\
+                and not self.ids.template.ids.second_third_check.active\
+                and not self.ids.second_forth_check.active\
+                and not self.ids.second_fifth_check.active:
             return False
         return True
-
-    def clear_widget_info(self):
-        self.ids.train_number_input.text = ""
-        self.ids.days_input.text = ""
-        self.ids.hours_input.text = ""
-        self.ids.minutes_input.text = ""
-        self.ids.seconds_input.text = ""
-        self.ids.station_input.text = ""
-        self.ids.low_time_input.text = ""
-        self.ids.top_time_input.text = ""
-        self.ids.date_input.text = ""
-        self.ids.dialog.text = "Dialog window"
 
     def number_search_sender(self):
         if not self.manager.controller.find_with_train_number_validated(self.ids.train_number_input.text):
@@ -208,6 +197,29 @@ class SearchDeleteTemplateScreen(Screen):
     def action(self):
         pass
 
+    def on_calendar_open_button_press(self):
+        self.manager.calendar.set_next_working_screen(self.name)
+        self.manager.current = "CalendarScreen"
+
+    def on_apply_calendar_info_button_press(self):
+        self.ids.date_input.text = self.manager.calendar.current_working_date
+
+    def on_back_button_press(self):
+        self.clear_widget_info()
+        self.manager.current = "StartScreen"
+
+    def clear_widget_info(self):
+        self.ids.train_number_input.text = ""
+        self.ids.days_input.text = ""
+        self.ids.hours_input.text = ""
+        self.ids.minutes_input.text = ""
+        self.ids.seconds_input.text = ""
+        self.ids.station_input.text = ""
+        self.ids.low_time_input.text = ""
+        self.ids.top_time_input.text = ""
+        self.ids.date_input.text = ""
+        self.ids.dialog.text = "Dialog window"
+
 
 class DeleteScreen(SearchDeleteTemplateScreen):
     name = "DeleteScreen"
@@ -277,13 +289,28 @@ class AllNotesOutputScreen(Screen):
                                           ("Path Time", dp(50)),
                                       ])
         main_layout.add_widget(self.data_table)
+        main_layout.add_widget(Button(text="Clear Table Data",
+                                      on_press=self.on_clear_button_press,
+                                      size_hint=(1, .1)))
+        main_layout.add_widget(Button(text="Refresh Table Data",
+                                      on_press=self.on_refresh_button_press,
+                                      size_hint=(1, .1)))
         main_layout.add_widget(Button(text="Home",
                                       on_press=self.on_back_button_press,
                                       size_hint=(1, .1)))
-        main_layout.add_widget(Button(text="Refresh table data",
-                                      on_press=self.refresh_table_data,
-                                      size_hint=(1, .1)))
         self.add_widget(main_layout)
+
+    def on_clear_button_press(self, instance):
+        self.manager.controller.delete_all_notes()
+
+    def on_refresh_button_press(self, instance):
+        difference = self.manager.controller.get_main_screen_difference()
+        addition_set = difference["addition"]
+        delete_set = difference["delete"]
+        for number in addition_set:
+            self.add_row(number)
+        for number in delete_set:
+            self.remove_row(number)
 
     def on_back_button_press(self, instance):
         self.manager.current = "StartScreen"
@@ -298,15 +325,6 @@ class AllNotesOutputScreen(Screen):
                 self.data_table.row_data.pop(index)
                 break
 
-    def refresh_table_data(self, instance):
-        difference = self.manager.controller.get_main_screen_difference()
-        addition_set = difference["addition"]
-        delete_set = difference["delete"]
-        for number in addition_set:
-            self.add_row(number)
-        for number in delete_set:
-            self.remove_row(number)
-
 
 class CalendarScreen(Screen):
     def __init__(self):
@@ -314,3 +332,77 @@ class CalendarScreen(Screen):
         self.name = "CalendarScreen"
         self.main_layout = BoxLayout(orientation='vertical')
         self.add_widget(self.main_layout)
+
+
+class FileManagementScreen(Screen):
+    first_group_data = ""
+
+    def on_first_group_active(self,
+                              value,
+                              text):
+        if value:
+            self.first_group_data = text
+
+    def first_group_active_validation(self):
+        if not self.ids.first_first_check.active\
+                and not self.ids.first_second_check.active\
+                and not self.ids.first_third_check.active\
+                and not self.ids.first_forth_check.active:
+            return False
+        return True
+
+    def add_new_file_sender(self):
+        if not self.manager.controller.add_new_file(self.ids.input.text):
+            self.ids.dialog.text = "Error"
+            return
+        else:
+            self.clear_widget_info()
+            return
+
+    def delete_file_sender(self):
+        if not self.manager.controller.delete_file(self.ids.input.text):
+            self.ids.dialog.text = "Error"
+            return
+        else:
+            self.clear_widget_info()
+            return
+
+    def write_to_file_sender(self):
+        if not self.manager.controller.write_to_file(self.ids.input.text):
+            self.ids.dialog.text = "Error"
+            return
+        else:
+            self.clear_widget_info()
+            return
+
+    def read_from_file_sender(self):
+        if not self.manager.controller.read_from_file(self.ids.input.text):
+            self.ids.dialog.text = "Error"
+            return
+        else:
+            self.clear_widget_info()
+            return
+
+    def on_action_button_press(self):
+        if not self.first_group_active_validation():
+            self.ids.dialog.text = "Error"
+            return
+        if self.first_group_data == "add_check":
+            self.add_new_file_sender()
+            return
+        elif self.first_group_data == "delete_check":
+            self.delete_file_sender()
+            return
+        elif self.first_group_data == "load_check":
+            self.write_to_file_sender()
+            return
+        elif self.first_group_data == "read_check":
+            self.read_from_file_sender()
+            return
+
+    def on_back_button_press(self):
+        self.manager.current = "StartScreen"
+
+    def clear_widget_info(self):
+        self.ids.dialog.text = "Dialog window"
+        self.ids.input.text = ""

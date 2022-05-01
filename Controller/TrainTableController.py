@@ -1,5 +1,10 @@
 from Model.TrainTableModel import TrainTableModel
-from datetime import datetime, timedelta, time, date
+from datetime import date, time, datetime, timedelta
+from FileManagement.TrainDomWriter import TrainDomWriter
+from FileManagement.TrainSaxReader import TrainSaxReader
+import os
+FILE_DATA_PATH = "FileData"
+MINIMUM_FILENAME_SIZE = 5
 
 
 class TrainTableController:
@@ -132,6 +137,9 @@ class TrainTableController:
     def delete_notes_with_buffer(self):
         self.model.delete_notes(self.corrected_search_version)
 
+    def delete_all_notes(self):
+        self.model.delete_notes(self.corrected_table_version)
+
     @staticmethod
     def get_update_difference(updated_ids_set: set,
                               current_output_ids_set: set):
@@ -150,3 +158,57 @@ class TrainTableController:
                                                 self.current_search_version)
         self.current_search_version = set(self.corrected_search_version)
         return difference
+
+    @staticmethod
+    def filename_validation(filename):
+        if len(filename) < MINIMUM_FILENAME_SIZE:
+            return False
+        elif filename[-1:-5:-1] != "lmx.":
+            return False
+        return True
+
+    @staticmethod
+    def add_new_file(new_filename):
+        if not TrainTableController.filename_validation(new_filename):
+            return False
+        if new_filename not in set(os.listdir(FILE_DATA_PATH)):
+            new_file = open(FILE_DATA_PATH + "/" + new_filename, "w")
+            new_file.close()
+            return True
+        else:
+            return False
+
+    @staticmethod
+    def delete_file(filename):
+        if not TrainTableController.filename_validation(filename):
+            return False
+        if filename in set(os.listdir(FILE_DATA_PATH)):
+            os.remove(FILE_DATA_PATH + "/" + filename)
+            return True
+        return False
+
+    def read_from_file(self,
+                       filename):
+        if filename not in set(os.listdir(FILE_DATA_PATH)):
+            return False
+        reader = TrainSaxReader()
+        reader.parse(FILE_DATA_PATH + "/" + filename)
+        train_data = reader.get_general_data()
+        for train in train_data:
+            self.model.add_new_train_note(train[0],
+                                          train[1],
+                                          datetime.fromisoformat(train[2]),
+                                          datetime.fromisoformat(train[3]))
+        return True
+
+    def write_to_file(self,
+                      filename):
+        if filename not in set(os.listdir(FILE_DATA_PATH)):
+            return False
+        trains = []
+        for train_number in self.corrected_table_version:
+            train_data = self.model.get_train_note_info_with_number(train_number)
+            trains.append(train_data[1:5:1])
+        writer = TrainDomWriter()
+        writer.create_and_write(trains, FILE_DATA_PATH + "/" + filename)
+        return True

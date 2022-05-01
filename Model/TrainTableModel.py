@@ -59,14 +59,16 @@ class TrainTableModel:
                 search_result.add(train_note.train_number)
         return search_result
 
-    def find_with_path_time(self, search_path_time: timedelta):
+    def find_with_path_time(self,
+                            search_path_time: timedelta):
         search_result = set()
         for train_note in self.trains:
             if train_note.path_time == search_path_time:
                 search_result.add(train_note.train_number)
         return search_result
 
-    def delete_notes(self, set_of_deleting_train_numbers):
+    def delete_notes(self,
+                     set_of_deleting_train_numbers):
         self.existing_ids.difference_update(set_of_deleting_train_numbers)
         for deleting_train_number in set_of_deleting_train_numbers:
             for index in range(len(self.trains)):
@@ -77,7 +79,8 @@ class TrainTableModel:
     def increase_train_id(self):
         self.train_id += 1
 
-    def get_train_note_info_with_number(self, number):
+    def get_train_note_info_with_number(self,
+                                        number):
         for train_note in self.trains:
             if train_note.train_number == number:
                 return train_note.get_train_note_info()
